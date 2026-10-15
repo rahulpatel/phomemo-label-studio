@@ -1,5 +1,8 @@
 # Label Studio for Phomemo M110
 
+> [!NOTE]
+> This project is entirely AI-generated: the code, templates and documentation were all written by AI.
+
 Design labels in Figma (or any tool that exports SVG), then fill in and print them on a Phomemo M110 over USB or Bluetooth, straight from the browser. You don't need Phomemo's apps or drivers.
 
 ![Label Studio showing a leftovers label with its fields filled in and a print preview](docs/screenshot.png)
