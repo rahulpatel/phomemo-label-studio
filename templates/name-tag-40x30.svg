@@ -1,0 +1,8 @@
+<svg width="320" height="240" viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="320" height="240" fill="white"/>
+<rect x="14" y="14" width="292" height="212" rx="12" stroke="black" stroke-width="4"/>
+<path d="M14 26C14 19.3726 19.3726 14 26 14H294C300.627 14 306 19.3726 306 26V82H14V26Z" fill="black"/>
+<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="30" font-weight="bold" letter-spacing="0.1em"><tspan x="101.7" y="52">HELLO</tspan></text>
+<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="14"><tspan x="124.2" y="72">my name is</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="40" font-weight="bold"><tspan x="76.6" y="170">{{name}}</tspan></text>
+</svg>

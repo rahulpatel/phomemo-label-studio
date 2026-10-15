@@ -1,0 +1,15 @@
+<svg width="400" height="640" viewBox="0 0 400 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="640" fill="white"/>
+<rect x="18" y="16" width="364" height="608" rx="16" stroke="black" stroke-width="4"/>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="24" font-weight="bold" letter-spacing="0.2em"><tspan x="166.8" y="70">BOX</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="88" font-weight="bold"><tspan x="53.3" y="196">{{box}}</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="30"><tspan x="145.8" y="260">{{room}}</tspan></text>
+<line x1="42" y1="294" x2="358" y2="294" stroke="black" stroke-width="2"/>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="18" font-weight="bold" letter-spacing="0.1em"><tspan x="42" y="336">CONTENTS</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="26"><tspan x="42" y="380">{{item 1}}</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="26"><tspan x="42" y="424">{{item 2}}</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="26"><tspan x="42" y="468">{{item 3}}</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="26"><tspan x="42" y="512">{{item 4}}</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="26"><tspan x="42" y="556">{{item 5}}</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="18"><tspan x="42" y="604">Packed {{date}}</tspan></text>
+</svg>

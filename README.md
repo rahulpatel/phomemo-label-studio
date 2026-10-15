@@ -12,6 +12,20 @@ npm start
 
 Requires Node.js 18 or later, with no dependencies to install. Open http://localhost:5173 in a Chromium browser (Helium, Chrome, Edge, Brave). Safari and Firefox don't support WebUSB or Web Bluetooth. Click **Connect USB** and choose the printer. After that, the app reconnects on its own whenever the printer is plugged in. After that, the app reconnects on its own whenever the printer is plugged in.
 
+## Starter templates
+
+The [`templates/`](templates) folder has ready-made designs you can drop straight into the app, or drag into Figma to use as a starting point (they import as editable frames with live text layers):
+
+| Template | Size | Fields |
+| --- | --- | --- |
+| [`name-tag-40x30.svg`](templates/name-tag-40x30.svg) | 40 × 30 mm | name |
+| [`pantry-50x30.svg`](templates/pantry-50x30.svg) | 50 × 30 mm | item, date |
+| [`leftovers-50x30.svg`](templates/leftovers-50x30.svg) | 50 × 30 mm | dish, date, eat by |
+| [`storage-box-50x80.svg`](templates/storage-box-50x80.svg) | 50 × 80 mm | box, room, item 1–5, date |
+| [`shipping-80x50.svg`](templates/shipping-80x50.svg) | 50 × 80 mm, rotated | from, name, address line 1–3 |
+
+All templates use Helvetica, which comes with macOS.
+
 ## Making a template in Figma
 
 1. Create a frame at **8 px per mm**, so 1 Figma pixel is 1 printer dot:
