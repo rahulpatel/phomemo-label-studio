@@ -15,7 +15,7 @@ Design labels in Figma (or any tool that exports SVG), then fill in and print th
 npm start
 ```
 
-Requires Node.js 18 or later, with no dependencies to install. Open http://localhost:5173 in a Chromium browser (Helium, Chrome, Edge, Brave). Safari and Firefox don't support WebUSB or Web Bluetooth. Click **Connect USB** and choose the printer. After that, the app reconnects on its own whenever the printer is plugged in. After that, the app reconnects on its own whenever the printer is plugged in.
+Requires Node.js 18 or later, with no dependencies to install. Open http://localhost:5173 in a Chromium browser (Helium, Chrome, Edge, Brave). Safari and Firefox don't support WebUSB or Web Bluetooth. On phones, Chrome for Android works over Bluetooth (and USB with an OTG adapter); iPhone browsers don't support either. Click **Connect USB** and choose the printer. After that, the app reconnects on its own whenever the printer is plugged in. After that, the app reconnects on its own whenever the printer is plugged in.
 
 ## Starter templates
 

@@ -400,7 +400,13 @@ function drawPreview() {
   const { labelCanvas, raster } = state;
   if (!labelCanvas || !raster) return;
   const { width: w, height: h } = labelCanvas;
-  const scale = Math.max(0.1, Math.min((stage.clientWidth - 48) / w, (stage.clientHeight - 48) / h, 3));
+  const pad = getComputedStyle(stage);
+  const availW = stage.clientWidth - parseFloat(pad.paddingLeft) - parseFloat(pad.paddingRight);
+  // On phones the page scrolls and the stage grows with the preview, so cap by screen height instead.
+  const availH = matchMedia('(max-width: 720px)').matches
+    ? window.innerHeight * 0.55
+    : stage.clientHeight - parseFloat(pad.paddingTop) - parseFloat(pad.paddingBottom);
+  const scale = Math.max(0.1, Math.min(availW / w, availH / h, 3));
   const cssW = Math.round(w * scale);
   const cssH = Math.round(h * scale);
   const dpr = window.devicePixelRatio || 1;

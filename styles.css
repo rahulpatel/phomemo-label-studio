@@ -194,3 +194,57 @@ dialog::backdrop { background: rgb(0 0 0 / 0.25); }
   .layout { grid-template-columns: 200px 1fr 270px; }
   .connection .chips { display: none; }
 }
+
+/* Phones: one scrolling column with the print bar pinned to the bottom. */
+@media (max-width: 720px) {
+  body { height: auto; min-height: 100dvh; overflow: visible; padding-bottom: calc(112px + env(safe-area-inset-bottom)); }
+  select, input[type="number"], input:not([type]), input[type="text"] { font-size: 16px; }
+
+  .topbar { flex-wrap: wrap; gap: 8px; padding: 10px 12px; }
+  .brand { flex: 1; white-space: nowrap; }
+  .brand .muted { display: none; }
+  .connection { display: contents; }
+  .connection .btn { flex: 1 1 calc(50% - 4px); }
+
+  .layout { display: flex; flex-direction: column; }
+
+  .sidebar { border-right: 0; border-bottom: 1px solid var(--line); }
+  .sidebar-head { padding: 12px 12px 4px; }
+  .sidebar-hint { display: none; }
+  .template-list { display: flex; gap: 6px; overflow-x: auto; overflow-y: hidden; padding: 4px 12px 12px; scroll-snap-type: x proximity; }
+  .template-list:empty { display: none; }
+  .template-item { flex: 0 0 220px; scroll-snap-align: start; border: 1px solid var(--line); }
+  .template-item.active { border-color: color-mix(in srgb, var(--accent) 35%, white); }
+
+  .stage-toolbar { flex-wrap: wrap; gap: 8px; padding: 10px 12px 0; }
+  .title-input { flex: 1 1 100%; max-width: none; }
+  .toolbar-actions { margin-left: 0; flex-wrap: wrap; }
+  .stage-canvas { padding: 16px 12px; overflow: visible; }
+  .stage-info { padding: 0 12px 8px; }
+  .warnings { padding: 0 12px 12px; }
+
+  .panel { border-left: 0; border-top: 1px solid var(--line); }
+  .panel > .panel-section:nth-child(2) { overflow: visible; }
+  .panel-section { padding: 14px 12px; }
+
+  .print-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+    background: var(--panel); border-top: 1px solid var(--line);
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 16px rgb(0 0 0 / 0.06);
+  }
+  .print-hint:empty { display: none; }
+  .toast { bottom: calc(96px + env(safe-area-inset-bottom)); }
+
+  .add-size { grid-template-columns: 1fr auto 1fr auto; }
+  .add-size #newSizeName { grid-column: 1 / -1; }
+}
+
+/* Touch screens: bigger targets, and no hover-only controls. */
+@media (hover: none) {
+  .template-item .actions { opacity: 1; }
+  .template-item .actions button { padding: 8px; }
+  .align button { padding: 6px 8px; }
+  .btn.icon { width: 40px; padding: 9px 0; }
+  .copies input { width: 52px; padding: 9px 2px; }
+}
