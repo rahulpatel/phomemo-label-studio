@@ -2,6 +2,8 @@
 
 Design labels in Figma (or any tool that exports SVG), then fill in and print them on a Phomemo M110 over USB or Bluetooth, straight from the browser. You don't need Phomemo's apps or drivers.
 
+![Label Studio showing a leftovers label with its fields filled in and a print preview](docs/screenshot.png)
+
 **Use it online at [phomemo.liteloop.dev](https://phomemo.liteloop.dev).** Everything runs in your browser, and templates are saved locally.
 
 ## Run it locally
