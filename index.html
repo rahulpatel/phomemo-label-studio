@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Label Studio · Phomemo M110</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='4' y='7' width='24' height='18' rx='3' fill='%23111'/><rect x='8' y='12' width='12' height='2.5' rx='1' fill='white'/><rect x='8' y='17' width='16' height='2.5' rx='1' fill='white'/></svg>" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      Label Studio <span class="muted">for Phomemo M110</span>
+    </div>
+    <div class="connection" id="connection">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusText">Not connected</span>
+      <span class="chips" id="statusChips"></span>
+      <button class="btn" id="connectUsb">Connect USB</button>
+      <button class="btn" id="connectBle" title="Shift-click to show all Bluetooth devices">Connect Bluetooth</button>
+      <button class="btn ghost hidden" id="disconnect">Disconnect</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <h2>Templates</h2>
+        <button class="btn small" id="importBtn">Import…</button>
+        <input type="file" id="fileInput" accept=".svg,image/svg+xml,image/png,image/jpeg" multiple hidden />
+      </div>
+      <ul class="template-list" id="templateList"></ul>
+      <p class="sidebar-hint">
+        Drop SVG or PNG files here, or in Figma right-click a frame →
+        <b>Copy/Paste as → Copy as SVG</b> and press <kbd>⌘V</kbd>.
+      </p>
+    </aside>
+
+    <section class="stage">
+      <div class="stage-toolbar hidden" id="stageToolbar">
+        <input class="title-input" id="titleInput" aria-label="Template name" spellcheck="false" />
+        <div class="segmented" role="radiogroup" aria-label="Preview">
+          <label><input type="radio" name="view" value="print" checked /><span>Print preview</span></label>
+          <label><input type="radio" name="view" value="dots" /><span>Dots</span></label>
+          <label><input type="radio" name="view" value="original" /><span>Original</span></label>
+        </div>
+        <div class="toolbar-actions">
+          <button class="btn small ghost" id="updateClipboard" title="Replace this template with an SVG copied from Figma">Update from clipboard</button>
+          <button class="btn small ghost" id="replaceFile" title="Replace this template with a new SVG file, keeping your settings">Replace file…</button>
+          <input type="file" id="replaceInput" accept=".svg,image/svg+xml,image/png,image/jpeg" hidden />
+        </div>
+      </div>
+
+      <div class="stage-canvas" id="stageCanvas">
+        <div class="empty" id="emptyState">
+          <h1>Design in Figma, print from here</h1>
+          <ol>
+            <li>In Figma, make a frame the shape of your label (for example <b>400 × 240</b> for 50 × 30 mm).</li>
+            <li>For text that changes, type a placeholder like <code>{{name}}</code> or <code>{{date}}</code>.</li>
+            <li>Select the frame, then <b>right-click → Copy/Paste as → Copy as SVG</b>, and paste here with <kbd>⌘V</kbd>.<br />
+              Or export it as SVG (keep "Outline text" off) and drop the file here.</li>
+            <li>Fill in the fields on the right and press <b>Print</b>.</li>
+          </ol>
+        </div>
+        <div class="label-frame hidden" id="labelFrame">
+          <canvas id="preview"></canvas>
+        </div>
+      </div>
+
+      <div class="stage-info" id="stageInfo"></div>
+      <div class="warnings" id="warnings"></div>
+    </section>
+
+    <aside class="panel" id="panel">
+      <section class="panel-section">
+        <h3>Label</h3>
+        <div class="row">
+          <select id="sizeSelect" aria-label="Label size"></select>
+          <button class="btn small ghost" id="manageSizes">Sizes…</button>
+        </div>
+        <div class="field-label">Rotation</div>
+        <div class="segmented full" role="radiogroup" aria-label="Rotation" id="rotation">
+          <label><input type="radio" name="rotation" value="0" checked /><span>0°</span></label>
+          <label><input type="radio" name="rotation" value="90" /><span>90°</span></label>
+          <label><input type="radio" name="rotation" value="180" /><span>180°</span></label>
+          <label><input type="radio" name="rotation" value="270" /><span>270°</span></label>
+        </div>
+      </section>
+
+      <section class="panel-section" id="fieldsSection">
+        <h3>Fields</h3>
+        <div id="fields"></div>
+      </section>
+
+      <section class="panel-section">
+        <h3>Print</h3>
+        <label class="field-label" for="density">Darkness <output id="densityOut"></output></label>
+        <input type="range" id="density" min="1" max="15" step="1" />
+
+        <label class="field-label" for="mode">Image conversion</label>
+        <select id="mode">
+          <option value="auto">Auto</option>
+          <option value="threshold">Sharp (text and logos)</option>
+          <option value="atkinson">Dithered (photos)</option>
+          <option value="floyd">Dithered, smooth</option>
+        </select>
+
+        <label class="field-label" for="threshold">Black threshold <output id="thresholdOut"></output></label>
+        <input type="range" id="threshold" min="20" max="235" step="1" />
+
+        <details class="advanced">
+          <summary>Paper &amp; alignment</summary>
+          <label class="field-label" for="media">Paper type</label>
+          <select id="media"></select>
+          <div class="grid2">
+            <label>
+              <span class="field-label">Shift right (mm)</span>
+              <input type="number" id="offsetX" step="0.5" min="-10" max="10" />
+            </label>
+            <label>
+              <span class="field-label">Shift down (mm)</span>
+              <input type="number" id="offsetY" step="0.5" min="-10" max="10" />
+            </label>
+          </div>
+          <button class="btn small" id="alignmentTest" type="button">Print alignment test</button>
+          <p class="help">Prints a dashed box 3 mm in from each edge. If it's off-center, shift by half the difference. Edges the print head can't reach are hatched red in the preview.</p>
+        </details>
+      </section>
+
+      <div class="print-bar">
+        <div class="copies">
+          <button class="btn icon" id="copiesDown" aria-label="Fewer copies">−</button>
+          <input type="number" id="copies" min="1" max="99" value="1" aria-label="Copies" />
+          <button class="btn icon" id="copiesUp" aria-label="More copies">+</button>
+        </div>
+        <button class="btn primary" id="printBtn">Print</button>
+        <div class="progress hidden" id="progress"><div id="progressBar"></div></div>
+        <div class="print-hint" id="printHint"></div>
+      </div>
+    </aside>
+  </main>
+
+  <dialog id="sizesDialog">
+    <form method="dialog" class="dialog-body">
+      <h2>Label sizes</h2>
+      <p class="muted">Width is across the printer (max 50 mm, 48 mm printable). Height is the length of each label.</p>
+      <ul class="size-list" id="sizeList"></ul>
+      <div class="add-size">
+        <input id="newSizeName" placeholder="Name (optional)" />
+        <input id="newSizeW" type="number" min="10" max="60" step="0.5" placeholder="Width mm" />
+        <span>×</span>
+        <input id="newSizeH" type="number" min="5" max="300" step="0.5" placeholder="Height mm" />
+        <button class="btn small" id="addSize" type="button">Add</button>
+        <label class="round-option"><input type="checkbox" id="newSizeRound" /> Round label (width is the diameter)</label>
+      </div>
+      <div class="dialog-actions"><button class="btn">Done</button></div>
+    </form>
+  </dialog>
+
+  <div class="drop-overlay hidden" id="dropOverlay"><div>Drop to import</div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="measure" id="measure" aria-hidden="true"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

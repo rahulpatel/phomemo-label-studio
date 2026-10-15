@@ -1,0 +1,8 @@
+<svg width="400" height="240" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="240" fill="white"/>
+<rect x="14" y="14" width="372" height="212" rx="14" stroke="black" stroke-width="4"/>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="22" font-weight="bold" letter-spacing="0.1em"><tspan x="140.5" y="56.5">PANTRY</tspan></text>
+<line x1="40" y1="74" x2="360" y2="74" stroke="black" stroke-width="2"/>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="44" font-weight="bold"><tspan x="117" y="136">{{item}}</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="Helvetica" font-size="22"><tspan x="40" y="196">Packed {{date}}</tspan></text>
+</svg>

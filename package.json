@@ -1,0 +1,16 @@
+{
+  "name": "phomemo-label-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Print Figma-designed label templates to a Phomemo M110 over USB or Bluetooth from the browser",
+  "license": "MIT",
+  "homepage": "https://phomemo.liteloop.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahulpatel/phomemo-label-studio.git"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node serve.mjs"
+  }
+}
